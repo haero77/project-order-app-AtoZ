@@ -1,8 +1,27 @@
+spring:
+  profiles:
+    active: release
+
+  thymeleaf:
+    cache: false
+
 logging:
   level:
     org:
       springframework:
         jdbc: debug
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: release
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/baemin
+    username: root
+    password: 5643
 
 ---
 
@@ -19,12 +38,8 @@ spring:
     url: jdbc:h2:mem:test_db;MODE=MySQL;
     username: sa
     password:
-  #    data: classpath:data-h2.sql
 
   sql:
     init:
       mode: always
       schema-locations: classpath:schema.sql
-
-  thymeleaf:
-    cache: false

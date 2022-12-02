@@ -1,5 +1,6 @@
 package devcourse.baemin.domain;
 
+import devcourse.baemin.domain.dto.StoreViewDto;
 import devcourse.baemin.domain.value.Amount;
 
 public class Store {
@@ -18,5 +19,9 @@ public class Store {
 
     public long getMinimumOrderAmount() {
         return this.minimumOrderAmount.getAmount();
+    }
+
+    public StoreViewDto toViewDto() {
+        return new StoreViewDto(this.storeName, getMinimumOrderAmount());
     }
 }
