@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link href="../../static/css/bootstrap.min.css"
+        rel="stylesheet"
+        th:href="@{/css/bootstrap.min.css}">
+  <style>
+      .container {
+          max-width: 560px;
+      }
+  </style>
+  <script type="text/javascript" src="/webjars/jquery/3.6.1/dist/jquery.min.js"></script>
+  <title>신규 가게 등록</title>
+</head>
+<body>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>신규 가게 등록</h2></div>
+  <h4 class="mb-3">가게 정보 입력</h4>
+  <!-- 가게 정보 입력 폼 -->
+  <form action="storeList.html" method="post" th:action>
+    <!-- storeName -->
+    <div class="mb-3">
+      <label for="storeName">상호명</label>
+      <input type="text" class="form-control" id="storeName" name="storeName" placeholder="상호명을 입력해주세요.">
+    </div>
+    <!-- minimumOrderAmount -->
+    <div>
+      <label for="minimumOrderAmount">최소 주문 금액</label>
+      <input class="form-control" id="minimumOrderAmount" name="minimumOrderAmount" placeholder="최소 주문 금액을 입력해주세요. (0~100,000원)" type="number">
+    </div>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col">
+        <button class="w-100 btn btn-primary btn-lg" type="submit">등록</button>
+      </div>
+      <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='vouchers.html'" type="button">취소</button>
+      </div>
+    </div>
+  </form>
+</div> <!-- /container -->
+</body>
+</html>
