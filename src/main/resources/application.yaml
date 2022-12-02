@@ -1,0 +1,30 @@
+logging:
+  level:
+    org:
+      springframework:
+        jdbc: debug
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test_db;MODE=MySQL;
+    username: sa
+    password:
+  #    data: classpath:data-h2.sql
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+  thymeleaf:
+    cache: false
