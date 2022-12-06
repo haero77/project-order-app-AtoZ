@@ -1,6 +1,7 @@
-package devcourse.baemin.domain.member;
+package devcourse.baemin.domain.member.repository;
 
-import org.springframework.dao.DataAccessException;
+import devcourse.baemin.domain.member.model.Member;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -13,6 +14,7 @@ import javax.sql.DataSource;
 import java.util.*;
 
 @Repository
+@Slf4j
 public class JdbcMemberRepository implements MemberRepository {
 
     private final NamedParameterJdbcTemplate template;
@@ -29,6 +31,7 @@ public class JdbcMemberRepository implements MemberRepository {
     public void save(Member member) {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(member);
         jdbcInsert.execute(parameterSource);
+        log.info("member saved: member={}", member);
     }
 
     @Override
