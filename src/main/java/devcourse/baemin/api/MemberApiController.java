@@ -1,7 +1,7 @@
-package devcourse.baemin.domain.member.controller;
+package devcourse.baemin.api;
 
-import devcourse.baemin.domain.member.model.MemberDto;
-import devcourse.baemin.domain.member.service.MemberService;
+import devcourse.baemin.domain.member.MemberDto;
+import devcourse.baemin.domain.member.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

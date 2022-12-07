@@ -1,4 +1,4 @@
-package devcourse.baemin.domain.member.model;
+package devcourse.baemin.domain.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

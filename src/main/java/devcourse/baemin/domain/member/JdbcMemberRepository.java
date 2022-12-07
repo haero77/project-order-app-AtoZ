@@ -1,6 +1,5 @@
-package devcourse.baemin.domain.member.repository;
+package devcourse.baemin.domain.member;
 
-import devcourse.baemin.domain.member.model.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;

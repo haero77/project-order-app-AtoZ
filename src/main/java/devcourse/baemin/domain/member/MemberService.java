@@ -1,8 +1,8 @@
-package devcourse.baemin.domain.member.service;
+package devcourse.baemin.domain.member;
 
-import devcourse.baemin.domain.member.model.Member;
-import devcourse.baemin.domain.member.model.MemberDto;
-import devcourse.baemin.domain.member.repository.MemberRepository;
+import devcourse.baemin.domain.member.Member;
+import devcourse.baemin.domain.member.MemberDto;
+import devcourse.baemin.domain.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

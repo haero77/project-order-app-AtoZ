@@ -1,6 +1,6 @@
-package devcourse.baemin.domain.member.repository;
+package devcourse.baemin.domain.member;
 
-import devcourse.baemin.domain.member.model.Member;
+import devcourse.baemin.domain.member.Member;
 
 import java.util.List;
 import java.util.Optional;
