@@ -19,9 +19,10 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public void join(MemberDto.JoinRequestDto joinRequestDto) {
+    public MemberDto.ResponseDto join(MemberDto.JoinRequestDto joinRequestDto) {
         try {
             this.memberRepository.save(joinRequestDto.toEntity());
+            return findMemberById(joinRequestDto.getMemberId());
         } catch (DataIntegrityViolationException dataIntegrityViolationException) {
             throw new IllegalArgumentException(
                     MessageFormat.format(
@@ -47,10 +48,10 @@ public class MemberService {
         return new MemberDto.ResponseDto(foundMember);
     }
 
-    public MemberDto.ResponseDto findById(String memberId) {
+    public MemberDto.ResponseDto findMemberById(String memberId) {
         Member foundMember = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException(
-                        MessageFormat.format("No Member exists for memberId={0}", memberId)
+                        MessageFormat.format("Can't find Member: No Member exists for memberId={0}", memberId)
                 ));
 
         return new MemberDto.ResponseDto(foundMember);

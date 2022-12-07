@@ -2,10 +2,7 @@ package devcourse.baemin.domain.member.controller;
 
 import devcourse.baemin.domain.member.model.MemberDto;
 import devcourse.baemin.domain.member.service.MemberService;
-import devcourse.baemin.web.response.DefaultResponse;
-import devcourse.baemin.web.response.ResponseMessage;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +23,8 @@ public class MemberApiController {
 
     @PostMapping("/members")
     public ResponseEntity<MemberDto.ResponseDto> join(@RequestBody MemberDto.JoinRequestDto joinRequestDto) {
-        memberService.join(joinRequestDto);
-        MemberDto.ResponseDto memberResponseDto = memberService.findById(joinRequestDto.getMemberId());
+        MemberDto.ResponseDto memberResponseDto = memberService.join(joinRequestDto);
+
         return ResponseEntity.ok()
                 .body(memberResponseDto);
     }
