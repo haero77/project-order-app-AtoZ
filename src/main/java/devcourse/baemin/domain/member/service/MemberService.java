@@ -3,11 +3,14 @@ package devcourse.baemin.domain.member.service;
 import devcourse.baemin.domain.member.model.Member;
 import devcourse.baemin.domain.member.model.MemberDto;
 import devcourse.baemin.domain.member.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class MemberService {
 
@@ -17,8 +20,16 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public void save(MemberDto.JoinRequestDto joinRequestDto) {
-        this.memberRepository.save(joinRequestDto.toEntity());
+    public void join(MemberDto.JoinRequestDto joinRequestDto) {
+        try {
+            this.memberRepository.save(joinRequestDto.toEntity());
+        } catch (DataIntegrityViolationException dataIntegrityViolationException) {
+            throw new IllegalArgumentException(
+                    MessageFormat.format(
+                            "Join Error: memberId ''{0}'' already in use.", joinRequestDto.getMemberId()
+                    )
+            );
+        }
     }
 
     public Optional<Member> login(String memberId, String password) {

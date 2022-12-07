@@ -2,6 +2,7 @@ package devcourse.baemin.domain.member.repository;
 
 import devcourse.baemin.domain.member.model.Member;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -11,7 +12,10 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Repository
 @Slf4j
@@ -28,10 +32,9 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void save(Member member) {
+    public void save(Member member) throws DataIntegrityViolationException {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(member);
         jdbcInsert.execute(parameterSource);
-        log.info("member saved: member={}", member);
     }
 
     @Override
