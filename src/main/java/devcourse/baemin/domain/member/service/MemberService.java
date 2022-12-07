@@ -8,7 +8,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -32,10 +31,20 @@ public class MemberService {
         }
     }
 
-    public Optional<Member> login(String memberId, String password) {
-        return memberRepository.findById(memberId)
-                .filter(member -> member.getPassword().equals(password))
-                .stream().findFirst();
+    public MemberDto.ResponseDto login(MemberDto.LoginRequestDto loginRequestDto) {
+        Member foundMember = memberRepository.findById(loginRequestDto.getMemberId())
+                .filter(member -> member.getPassword().equals(loginRequestDto.getPassword()))
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(
+                                MessageFormat.format(
+                                        "Login Error: member ''{0}'' doesn't exist or password doesn't match",
+                                        loginRequestDto.getMemberId()
+                                )
+                        )
+                );
+
+        return new MemberDto.ResponseDto(foundMember);
     }
 
     public MemberDto.ResponseDto findById(String memberId) {
