@@ -23,7 +23,14 @@ public class MenuApiController {
     public ResponseEntity<CommonResponse<List<MenuDto.ResponseDto>>> getMenus() {
         List<MenuDto.ResponseDto> menus = menuService.findAllMenu();
         return ResponseEntity.ok()
-                .body(new CommonResponse<>("Found All Menus.", menus));
+                .body(new CommonResponse<>("Found all menus.", menus));
+    }
+
+    @GetMapping("/{menuId}")
+    public ResponseEntity<CommonResponse<MenuDto.ResponseDto>> getMenu(@PathVariable UUID menuId) {
+        MenuDto.ResponseDto menuResponseDto = menuService.findMenuById(menuId);
+        return ResponseEntity.ok()
+                .body(new CommonResponse<>("Found a menu", menuResponseDto));
     }
 
     @PostMapping("/{storeId}")

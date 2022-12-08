@@ -30,7 +30,7 @@ public class MenuService {
                 .collect(Collectors.toList());
     }
 
-    private MenuDto.ResponseDto findMenuById(UUID menuId) {
+    public MenuDto.ResponseDto findMenuById(UUID menuId) {
         Menu foundMenu = menuRepository.findById(menuId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         MessageFormat.format("No menu exists for menuId={0}", menuId)
