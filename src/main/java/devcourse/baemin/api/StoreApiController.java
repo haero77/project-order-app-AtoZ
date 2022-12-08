@@ -22,15 +22,13 @@ public class StoreApiController {
     @GetMapping
     public ResponseEntity<List<StoreDto.ResponseDto>> getAllStores() {
         List<StoreDto.ResponseDto> stores = storeService.findAllStores();
-        return ResponseEntity.ok()
-                .body(stores);
+        return ResponseEntity.ok().body(stores);
     }
 
     @PostMapping
     public ResponseEntity<StoreDto.ResponseDto> addStore(@RequestBody StoreDto.RequestDto requestDto) {
         StoreDto.ResponseDto responseDto = storeService.addStore(requestDto);
-        return ResponseEntity.ok()
-                .body(responseDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 
     @PatchMapping("/{storeId}")
@@ -41,7 +39,6 @@ public class StoreApiController {
         StoreDto.ResponseDto responseDto = storeService.updateMinimumOrderAmount(
                 storeId, minimumOrderAmount.get("minimumOrderAmount")
         );
-        return ResponseEntity.ok()
-                .body(responseDto);
+        return ResponseEntity.ok().body(responseDto);
     }
 }

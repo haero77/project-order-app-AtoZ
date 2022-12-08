@@ -25,8 +25,7 @@ public class MemberApiController {
     public ResponseEntity<MemberDto.ResponseDto> join(@RequestBody MemberDto.JoinRequestDto joinRequestDto) {
         MemberDto.ResponseDto memberResponseDto = memberService.join(joinRequestDto);
 
-        return ResponseEntity.ok()
-                .body(memberResponseDto);
+        return ResponseEntity.ok().body(memberResponseDto);
     }
 
     @PostMapping("/members/member")
@@ -39,7 +38,6 @@ public class MemberApiController {
         Cookie idCookie = new Cookie("memberId", memberResponseDto.getMemberId());
         response.addCookie(idCookie);
 
-        return ResponseEntity.ok()
-                .body(memberResponseDto);
+        return ResponseEntity.ok().body(memberResponseDto);
     }
 }
