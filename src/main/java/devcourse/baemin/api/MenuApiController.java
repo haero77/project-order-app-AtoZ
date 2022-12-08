@@ -20,9 +20,10 @@ public class MenuApiController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MenuDto.ResponseDto>> getMenus() {
+    public ResponseEntity<CommonResponse<List<MenuDto.ResponseDto>>> getMenus() {
         List<MenuDto.ResponseDto> menus = menuService.findAllMenu();
-        return ResponseEntity.ok().body(menus);
+        return ResponseEntity.ok()
+                .body(new CommonResponse<>("Found All Menus.", menus));
     }
 
     @PostMapping("/{storeId}")
