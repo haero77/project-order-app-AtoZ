@@ -48,4 +48,10 @@ public class MenuService {
                 storeId
         );
     }
+
+    public MenuDto.ResponseDto deleteMenu(UUID menuId) {
+        MenuDto.ResponseDto menuResponseDto = findMenuById(menuId);
+        menuRepository.delete(menuId);
+        return menuResponseDto;
+    }
 }

@@ -9,8 +9,8 @@ public class Menu {
     private final UUID menuId;
     private final String menuName;
     private final Amount price;
-    private String description;
     private final UUID storeId;
+    private String description;
 
     public Menu(UUID menuId, String menuName, Amount price, UUID storeId) {
         this.menuId = menuId;

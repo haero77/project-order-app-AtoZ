@@ -1,5 +1,6 @@
 package devcourse.baemin.api;
 
+import devcourse.baemin.api.response.CommonResponse;
 import devcourse.baemin.domain.menu.MenuDto;
 import devcourse.baemin.domain.menu.MenuService;
 import org.springframework.http.ResponseEntity;
@@ -32,20 +33,10 @@ public class MenuApiController {
         return ResponseEntity.ok().body(menuResponseDto);
     }
 
-
-
-/*
-    @GetMapping
-    public DefaultResponse<?> getMenus() {
-        List<Menu> menus = menuService.findAllMenu();
-        return DefaultResponse.response(HttpStatus.OK.value(), )
+    @DeleteMapping("/{menuId}")
+    public ResponseEntity<CommonResponse<MenuDto.ResponseDto>> deleteMenu(@PathVariable UUID menuId) {
+        MenuDto.ResponseDto menuResponseDto = menuService.deleteMenu(menuId);
+        return ResponseEntity.ok()
+                .body(new CommonResponse<>("Menu Deleted", menuResponseDto));
     }
-*/
-
-/*    @GetMapping("/menus/{menuId}")
-    public DefaultResponse<?> menuDetail(@PathVariable UUID menuId) {
-        menuService.findMenuById(menuId);
-        return DefaultResponse.response(HttpStatus.OK.value())
-    }*/
-
 }
