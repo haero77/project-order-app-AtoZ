@@ -1,6 +1,7 @@
 package devcourse.baemin.domain.store;
 
 import devcourse.baemin.domain.value.Amount;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.*;
 
+@Slf4j
 @Repository
 public class JdbcStoreRepository implements StoreRepository {
 
@@ -59,13 +61,15 @@ public class JdbcStoreRepository implements StoreRepository {
     }
 
     @Override
-    public void updateMinimumOrderAmount(UUID storeId, Amount updateAmount) {
+    public void updateMinimumOrderAmount(UUID storeId, Amount minimumOrderAmount) {
+        log.info("Update minimumOrderAmount of store '{}' to amount '{}'", storeId, minimumOrderAmount.getAmount());
+
         String sql = "update store " +
                 "set minimum_order_amount=:minimum_order_amount " +
                 "where store_id=:store_id";
 
         SqlParameterSource parameterSource = new MapSqlParameterSource()
-                .addValue("minimum_order_amount", updateAmount.getAmount())
+                .addValue("minimum_order_amount", minimumOrderAmount.getAmount())
                 .addValue("store_id", storeId.toString());
 
         template.update(sql, parameterSource);
