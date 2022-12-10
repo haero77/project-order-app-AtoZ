@@ -54,5 +54,15 @@ public class OrderApiController {
                 .body(new CommonResponse<>("Order created.", orderDetailDto));
     }
 
-    // TODO: PATCH /orders/{orderId}/cancel
+    @PatchMapping("/{orderId}")
+    public ResponseEntity<CommonResponse<OrderDetailDto>> cancelOrder(
+            @PathVariable UUID orderId
+    ) {
+        OrderDetailDto orderDetailDto = orderService.cancelOrder(orderId);
+        return ResponseEntity.ok()
+                .body(new CommonResponse<>(
+                        MessageFormat.format("Order ''{0}'' has been cancelled.", orderId),
+                        orderDetailDto
+                ));
+    }
 }

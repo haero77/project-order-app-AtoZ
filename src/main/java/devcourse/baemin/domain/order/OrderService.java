@@ -46,6 +46,13 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
+    public OrderDetailDto cancelOrder(UUID orderId) {
+        Order order = findOrderById(orderId);
+        order.cancel();
+        orderRepository.updateCancelledAt(order.getOrderId(), order.getOrderStatus(), TimeUtil.getCurrentSeoulTime());
+        return getOrderByIdAsDto(orderId);
+    }
+
     private List<Order> getOrders() {
         return orderRepository.findAll();
     }

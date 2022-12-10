@@ -47,6 +47,7 @@ public class Order {
     }
 
     public void cancel() {
+        this.orderStatus = OrderStatus.CANCELLED;
         this.cancelledAt = TimeUtil.getCurrentSeoulTime();
     }
 

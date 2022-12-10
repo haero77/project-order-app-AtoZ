@@ -33,15 +33,7 @@ public class JdbcOrderRepository implements OrderRepository {
 
     @Override
     public void save(Order order) {
-
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(order);
-        log.debug("help me!!");
-
-//        String[] parameterNames = parameterSource.getParameterNames();
-//        for (String parameterName : parameterNames) {
-//            log.debug("parameterName = {}, value = {}", parameterName, parameterSource.getValue(parameterName));
-//        }
-//
         jdbcInsert.execute(parameterSource);
     }
 
@@ -70,12 +62,13 @@ public class JdbcOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void updateCancelledAt(UUID orderId, LocalDateTime cancelledAt) {
+    public void updateCancelledAt(UUID orderId, String orderStatus, LocalDateTime cancelledAt) {
         String sql = "update orders " +
-                "set cancelled_at=:cancelledAt " +
+                "set order_status=:orderStatus, cancelled_at=:cancelledAt " +
                 "where order_id=:orderId";
 
         SqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("orderStatus", orderStatus)
                 .addValue("cancelledAt", cancelledAt)
                 .addValue("orderId", orderId.toString());
 

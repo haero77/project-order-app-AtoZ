@@ -15,5 +15,5 @@ public interface OrderRepository {
 
     Optional<Order> findById(UUID orderId);
 
-    void updateCancelledAt(UUID orderId, LocalDateTime cancelledAt);
+    void updateCancelledAt(UUID orderId, String orderStatus, LocalDateTime cancelledAt);
 }
