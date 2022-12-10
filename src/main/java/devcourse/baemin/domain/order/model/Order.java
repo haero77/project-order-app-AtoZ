@@ -1,10 +1,10 @@
-package devcourse.baemin.domain.order;
+package devcourse.baemin.domain.order.model;
 
+import devcourse.baemin.domain.order.OrderStatus;
 import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.util.TimeUtil;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class Order {
@@ -47,7 +47,7 @@ public class Order {
     }
 
     public void cancel() {
-        this.cancelledAt = ZonedDateTime.now(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+        this.cancelledAt = TimeUtil.getCurrentSeoulTime();
     }
 
     public UUID getOrderId() {

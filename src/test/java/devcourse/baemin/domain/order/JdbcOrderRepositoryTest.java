@@ -4,6 +4,7 @@ import devcourse.baemin.domain.member.Member;
 import devcourse.baemin.domain.member.MemberRepository;
 import devcourse.baemin.domain.menu.Menu;
 import devcourse.baemin.domain.menu.MenuRepository;
+import devcourse.baemin.domain.order.model.Order;
 import devcourse.baemin.domain.store.Store;
 import devcourse.baemin.domain.store.StoreRepository;
 import devcourse.baemin.domain.value.Amount;

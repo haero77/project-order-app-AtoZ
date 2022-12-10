@@ -1,5 +1,6 @@
 package devcourse.baemin.domain.order;
 
+import devcourse.baemin.domain.order.model.Order;
 import devcourse.baemin.domain.value.Amount;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
