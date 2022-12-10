@@ -2,7 +2,7 @@ package devcourse.baemin.domain.menu;
 
 import devcourse.baemin.domain.store.Store;
 import devcourse.baemin.domain.store.StoreRepository;
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

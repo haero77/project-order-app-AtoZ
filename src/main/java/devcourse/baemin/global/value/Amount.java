@@ -1,4 +1,4 @@
-package devcourse.baemin.domain.value;
+package devcourse.baemin.global.value;
 
 import java.util.Objects;
 

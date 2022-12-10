@@ -1,4 +1,4 @@
-package devcourse.baemin.exception;
+package devcourse.baemin.global.exception;
 
 public class ErrorResult {
 

@@ -1,6 +1,6 @@
 package devcourse.baemin.domain.store;
 
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;

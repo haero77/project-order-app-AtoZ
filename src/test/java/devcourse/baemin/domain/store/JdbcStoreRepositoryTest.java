@@ -1,6 +1,6 @@
 package devcourse.baemin.domain.store;
 
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

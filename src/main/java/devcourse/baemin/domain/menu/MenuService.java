@@ -1,6 +1,6 @@
 package devcourse.baemin.domain.menu;
 
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;

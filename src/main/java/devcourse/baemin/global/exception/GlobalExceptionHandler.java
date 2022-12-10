@@ -1,4 +1,4 @@
-package devcourse.baemin.exception;
+package devcourse.baemin.global.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

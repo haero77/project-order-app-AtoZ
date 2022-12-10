@@ -1,6 +1,6 @@
 package devcourse.baemin.domain.menu;
 
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;

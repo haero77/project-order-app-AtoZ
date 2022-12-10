@@ -1,7 +1,7 @@
 package devcourse.baemin.domain.order.model;
 
 import devcourse.baemin.domain.order.OrderStatus;
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 import devcourse.baemin.util.TimeUtil;
 
 import java.time.LocalDateTime;
@@ -48,6 +48,10 @@ public class Order {
 
     public void cancel() {
         this.cancelledAt = TimeUtil.getCurrentSeoulTime();
+    }
+
+    public boolean isOrderedByMember(String memberId) {
+        return this.getMemberId().equals(memberId);
     }
 
     public UUID getOrderId() {

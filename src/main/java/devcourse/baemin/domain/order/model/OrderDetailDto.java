@@ -3,7 +3,7 @@ package devcourse.baemin.domain.order.model;
 import devcourse.baemin.domain.menu.Menu;
 import devcourse.baemin.domain.order.OrderStatus;
 import devcourse.baemin.domain.store.Store;
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
