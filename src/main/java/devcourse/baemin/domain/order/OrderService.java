@@ -6,12 +6,14 @@ import devcourse.baemin.domain.order.model.Order;
 import devcourse.baemin.domain.order.model.OrderCreationDto;
 import devcourse.baemin.domain.order.model.OrderDetailDto;
 import devcourse.baemin.domain.store.StoreService;
-import devcourse.baemin.domain.value.Amount;
+import devcourse.baemin.global.value.Amount;
 import devcourse.baemin.util.TimeUtil;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -35,6 +37,17 @@ public class OrderService {
 
     public OrderDetailDto getOrderByIdAsDto(UUID orderId) {
         return toOrderDetailDto(findOrderById(orderId));
+    }
+
+    public List<OrderDetailDto> getOrdersByMemberIdAsDto(String memberId) {
+        return getOrders().stream()
+                .filter(order -> order.isOrderedByMember(memberId))
+                .map(this::toOrderDetailDto)
+                .collect(Collectors.toList());
+    }
+
+    private List<Order> getOrders() {
+        return orderRepository.findAll();
     }
 
     private Order findOrderById(UUID orderId) {
