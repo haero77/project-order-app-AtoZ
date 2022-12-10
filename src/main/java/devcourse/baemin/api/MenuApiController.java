@@ -28,7 +28,7 @@ public class MenuApiController {
 
     @GetMapping("/{menuId}")
     public ResponseEntity<CommonResponse<MenuDto.ResponseDto>> getMenu(@PathVariable UUID menuId) {
-        MenuDto.ResponseDto menuResponseDto = menuService.findMenuById(menuId);
+        MenuDto.ResponseDto menuResponseDto = menuService.getMenuAsDto(menuId);
         return ResponseEntity.ok()
                 .body(new CommonResponse<>("Found a menu", menuResponseDto));
     }

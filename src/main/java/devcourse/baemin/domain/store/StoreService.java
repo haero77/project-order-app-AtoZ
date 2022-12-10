@@ -18,13 +18,9 @@ public class StoreService {
     }
 
     public StoreDto.ResponseDto addStore(StoreDto.RequestDto requestDto) {
-        Store store = new Store(
-                UUID.randomUUID(),
-                requestDto.getStoreName(),
-                new Amount(requestDto.getMinimumOrderAmount())
-        );
+        Store store = toStore(requestDto);
         storeRepository.save(store);
-        return new StoreDto.ResponseDto(store);
+        return getStoreByIdAsDto(store.getStoreId());
     }
 
     public List<StoreDto.ResponseDto> findAllStores() {
@@ -36,10 +32,26 @@ public class StoreService {
 
     public StoreDto.ResponseDto updateMinimumOrderAmount(UUID storeId, long minimumOrderAmount) {
         storeRepository.updateMinimumOrderAmount(storeId, new Amount(minimumOrderAmount));
-        Store updatedStore = storeRepository.findById(storeId)
-                .orElseThrow(() -> new IllegalArgumentException(
-                        MessageFormat.format("Can't find store for storeId={0}", storeId)
-                ));
+        Store updatedStore = findStoreById(storeId);
         return new StoreDto.ResponseDto(updatedStore);
+    }
+
+    public Store findStoreById(UUID storeId) {
+        return storeRepository.findById(storeId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        MessageFormat.format("No store exists for storeId={0}", storeId)
+                ));
+    }
+
+    private StoreDto.ResponseDto getStoreByIdAsDto(UUID storeId) {
+        return new StoreDto.ResponseDto(findStoreById(storeId));
+    }
+
+    private Store toStore(StoreDto.RequestDto requestDto) {
+        return new Store(
+                UUID.randomUUID(),
+                requestDto.getStoreName(),
+                new Amount(requestDto.getMinimumOrderAmount())
+        );
     }
 }

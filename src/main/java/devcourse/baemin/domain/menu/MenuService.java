@@ -18,9 +18,9 @@ public class MenuService {
     }
 
     public MenuDto.ResponseDto addMenu(UUID storeId, MenuDto.AdditionDto menuAdditionDto) {
-        Menu menu = toEntity(storeId, menuAdditionDto);
+        Menu menu = toMenu(storeId, menuAdditionDto);
         menuRepository.save(menu);
-        return findMenuById(menu.getMenuId());
+        return getMenuAsDto(menu.getMenuId());
     }
 
     public List<MenuDto.ResponseDto> findAllMenu() {
@@ -30,16 +30,24 @@ public class MenuService {
                 .collect(Collectors.toList());
     }
 
-    public MenuDto.ResponseDto findMenuById(UUID menuId) {
-        Menu foundMenu = menuRepository.findById(menuId)
+    public MenuDto.ResponseDto getMenuAsDto(UUID menuId) {
+        return new MenuDto.ResponseDto(findMenuById(menuId));
+    }
+
+    public MenuDto.ResponseDto deleteMenu(UUID menuId) {
+        MenuDto.ResponseDto menuResponseDto = getMenuAsDto(menuId);
+        menuRepository.delete(menuId);
+        return menuResponseDto;
+    }
+
+    public Menu findMenuById(UUID menuId) {
+        return menuRepository.findById(menuId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         MessageFormat.format("No menu exists for menuId={0}", menuId)
                 ));
-
-        return new MenuDto.ResponseDto(foundMenu);
     }
 
-    private Menu toEntity(UUID storeId, MenuDto.AdditionDto menuAdditionDto) {
+    private Menu toMenu(UUID storeId, MenuDto.AdditionDto menuAdditionDto) {
         return new Menu(
                 UUID.randomUUID(),
                 menuAdditionDto.getMenuName(),
@@ -47,11 +55,5 @@ public class MenuService {
                 menuAdditionDto.getDescription(),
                 storeId
         );
-    }
-
-    public MenuDto.ResponseDto deleteMenu(UUID menuId) {
-        MenuDto.ResponseDto menuResponseDto = findMenuById(menuId);
-        menuRepository.delete(menuId);
-        return menuResponseDto;
     }
 }
