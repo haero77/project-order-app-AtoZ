@@ -1,4 +1,4 @@
-package devcourse.baemin.domain;
+package devcourse.baemin.domain.order;
 
 public enum OrderStatus {
     PAID,

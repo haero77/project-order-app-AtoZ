@@ -22,3 +22,16 @@ create table menu
     foreign key (store_id) references store (store_id),
     check (price >= 0)
 );
+
+create table orders
+(
+    order_id       varchar(50) primary key,
+    member_id      varchar(50) not null references member (member_id),
+    menu_id        varchar(50) not null references menu (menu_id),
+    store_id       varchar(50) not null references store (store_id),
+    order_quantity bigint      not null,
+    order_amount   bigint      not null,
+    order_status   varchar(50) not null,
+    created_at     timestamp   not null,
+    cancelled_at   timestamp
+);
